@@ -21,6 +21,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 import edu.eci.pdsw.entities.Blog;
+import edu.eci.pdsw.entities.Comment;
 
 /**
  *
@@ -30,5 +31,9 @@ import edu.eci.pdsw.entities.Blog;
 public interface BlogMapper {
 
 	List<Blog> findByUser(@Param("login") String login);
+	Blog loadBlogTitle(@Param("title") String title);
+	List<Comment> loadCommet(@Param("title") String title);
+	Blog loadBlogComentariosOfensivos();
+	 
 
 }

@@ -41,4 +41,8 @@ public interface BlogDAO {
     public Blog load(String title) throws PersistenceException;
 
     public List<Blog> loadByUser(String login) throws PersistenceException;
+
+	List<Comment> loadComment(String title) throws PersistenceException;
+
+	Blog loadBlogComentariosOfensivos() throws PersistenceException;
 }

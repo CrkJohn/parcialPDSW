@@ -19,6 +19,7 @@ CREATE TABLE `BLOG_COMMENT` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `author` varchar(100) NOT NULL,
   `blog_id` int(11) NOT NULL,
+   
   `content` varchar(100) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `BLOG_COMMENT_BLOG_FK` (`blog_id`),

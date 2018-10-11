@@ -59,14 +59,44 @@ public class MyBatisBlogDAO implements BlogDAO {
 	public Blog load(int blogID) throws PersistenceException {
 		throw new UnsupportedOperationException("Not supported yet.");
 	}
+	
+
 
 	@Override
 	public Blog load(String title) throws PersistenceException {
-		throw new UnsupportedOperationException("Not supported yet.");
+		try {
+			return blogMapper.loadBlogTitle(title);
+		}catch (Exception e) {
+			throw new PersistenceException("No se encontro el blog con el titulo "+title);
+		}
 	}
 
+	@Override 
+	public List<Comment> loadComment(String title) throws PersistenceException{
+		try{
+			return blogMapper.loadCommet(title);
+		}catch (Exception e) {
+			throw new PersistenceException("No se encontraron comentario del blog" + title);
+		}
+	}
+	
+	@Override 
+	public Blog loadBlogComentariosOfensivos() throws PersistenceException{
+		try{
+			return blogMapper.loadBlogComentariosOfensivos();
+		}catch (Exception e) {
+			throw new PersistenceException("ERROR AL ENCONTRAR COMENTARIOS OFENSIVOS DE LOS BLOGS");
+		}
+		
+		
+	}
+	
+	
+	
 	@Override
 	public List<Blog> loadByUser(String login) throws PersistenceException {
 		return blogMapper.findByUser(login);
 	}
+	
+	
 }

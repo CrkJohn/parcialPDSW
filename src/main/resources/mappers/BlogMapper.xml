@@ -22,7 +22,76 @@
             WHERE b.author = #{login}
         </if>
     </select>
+    
+    
     <delete id="deleteAll">
         delete from BLOG
     </delete>
+    
+    <select id="loadComment" resultMap="loadCommentResult" parameterType="map">
+    	SELECT 
+    		bc.author as AuthorComment,
+    		bc.content as Content,
+    		bc.id as ComentarioBlogID,
+    		bc.creation_date as fechaDate ,
+    		bu.login as usuarioLogin,
+    		bc.author as pruebita,
+    		bu.name as nameUsuario,
+    		bu.lastname as lastNameUsuario
+			FROM BLOG as b , BLOG_COMMENT as bc, BLOG_USUARIO as bu
+			WHERE   b.id = bc.blog_id and bu.login = bc.author and b.title = #{title}
+			ORDER BY fechaDate DESC 		
+    </select>
+    
+    
+    
+    
+    
+    <select parameterType="map" id="loadBlogComentariosOfensivos"  resultMap="loadBlogComentariosOfensivosResult">
+    	SELECT 
+    		bc.author as AuthorComment,
+    		bc.content as Content,
+    		bc.id as ComentarioBlogID,
+    		bc.creation_date as fechaDate ,
+    		bu.login as usuarioLogin,
+    		bu.name as nameUsuario,
+    		bu.lastname as lastNameUsuario,
+    		b.id as blogID,
+    		b.title as tituloBlog,
+    		b.creation_date as blogCreation
+			FROM BLOG as b , BLOG_COMMENT as bc, BLOG_USUARIO as bu
+			WHERE  b.id = bc.blog_id and bu.login = bc.author and (bc.content like '%tonto%' or bc.content like '%bobo%')
+    		ORDER BY usuarioLogin DESC
+    </select>
+    
+    
+    <resultMap type="Blog" id="loadBlogComentariosOfensivosResult">
+    	<id property="id" column="blogID"/>
+    	<result property="title" column="tituloBlog"/> 
+    	<result property="creationDate" column="blogCreation"/>
+    	<association property="user" javaType="User" resultMap="userParseBlog"/>
+    	<collection property='comments' ofType='Comment' resultMap='loadCommentResult'></collection>  
+    </resultMap>
+    
+    <resultMap type="User" id="userParseBlog">
+    	<id property="login" column="usuarioLogin"></id>
+    	<result property="name" column="nameUsuario"/>
+    	<result property="lastname" column="lastNameUsuario"/> 
+    </resultMap>
+    
+    
+    <resultMap type="Comment" id="loadCommentResult">
+    	<id property="id" column="ComentarioBlogID"/>
+    	<result property="creationDate" column="fechaDate"/>
+		<result property="content" column="Content"/>    	
+    	<association property="user"  javaType="User" resultMap="userParse"/>
+    </resultMap>
+    
+    <resultMap type="User" id="userParse">
+    	<id property="login" column="usuarioLogin"></id>
+    	<result property="name" column="nameUsuario"/>
+    	<result property="lastname" column="lastNameUsuario"/> 
+    </resultMap>
+    
+ 
 </mapper>
