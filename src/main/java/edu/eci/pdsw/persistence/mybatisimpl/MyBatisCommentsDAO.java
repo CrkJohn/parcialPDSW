@@ -13,13 +13,13 @@ import edu.eci.pdsw.persistence.mybatisimpl.mappers.ComentMapper;
 
 public class MyBatisCommentsDAO implements CommentsDAO{
 	
-		@Inject
-		ComentMapper comentMapper;
+	@Inject
+	ComentMapper comentMapper;
 
-		@Override
-		public List<Comment> loadComment(String title) throws PersistenceException{
-                       
-			return comentMapper.loadComment(title);
-		}
+	@Override
+	public List<Comment> loadComment(String title) throws PersistenceException{
+                System.err.println(title);
+		return comentMapper.loadComment(title);
+	}
 
 }

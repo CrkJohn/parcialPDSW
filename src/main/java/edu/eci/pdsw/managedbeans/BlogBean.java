@@ -41,6 +41,7 @@ public class BlogBean extends BasePageBean {
 	@ManagedProperty(value = "#{param.user}")
 	private String user;
         
+        
       
 
 
