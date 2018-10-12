@@ -33,7 +33,7 @@ public interface BlogMapper {
 	List<Blog> findByUser(@Param("login") String login);
 	Blog loadBlogTitle(@Param("title") String title);
 	List<Comment> loadCommet(@Param("title") String title);
-	Blog loadBlogComentariosOfensivos();
+	List<Blog> loadBlogComentariosOfensivos();
 	 
 
 }

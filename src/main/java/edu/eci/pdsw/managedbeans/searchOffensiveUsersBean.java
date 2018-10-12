@@ -6,7 +6,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.inject.Inject;
 
-import edu.eci.pdsw.entities.User;
+import edu.eci.pdsw.entities.*;
 import edu.eci.pdsw.services.BlogServices;
 import edu.eci.pdsw.services.ServicesException;
 
@@ -26,15 +26,25 @@ public class searchOffensiveUsersBean extends BasePageBean {
 	
     @Inject
     private BlogServices blogServices;
+    private List<Comment> comentarios;
 
-    public List<User> getUsers() throws Exception{
+    public List<Blog> getData() throws Exception{
         try {
-            return blogServices.listUsers();
+            return blogServices.searchOffensiveLanguageComments();
         } catch (ServicesException ex) {
-            
             throw ex;
         }
-        
+    }
+    
+    public List<Comment> getComment(int id)throws Exception{
+        List<Blog>  listBlogs= blogServices.searchOffensiveLanguageComments();
+        for (Blog b : listBlogs) {
+            if(b.getId() == id){
+                comentarios = b.getComments();
+                break;
+            }
+        }       
+        return comentarios;
     }
 
     

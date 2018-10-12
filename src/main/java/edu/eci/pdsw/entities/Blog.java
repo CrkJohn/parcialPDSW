@@ -46,6 +46,8 @@ public class Blog {
     public Blog() {
     	this.comments = new ArrayList<>();
     }
+    
+   
    
 	public int getId() {
 		return id;

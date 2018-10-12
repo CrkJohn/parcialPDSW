@@ -81,8 +81,9 @@ public class MyBatisBlogDAO implements BlogDAO {
 	}
 	
 	@Override 
-	public Blog loadBlogComentariosOfensivos() throws PersistenceException{
-		try{
+	public List<Blog> loadBlogComentariosOfensivos() throws PersistenceException{
+		try{    
+                       System.out.println(blogMapper.loadBlogComentariosOfensivos());
 			return blogMapper.loadBlogComentariosOfensivos();
 		}catch (Exception e) {
 			throw new PersistenceException("ERROR AL ENCONTRAR COMENTARIOS OFENSIVOS DE LOS BLOGS");

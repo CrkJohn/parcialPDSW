@@ -13,6 +13,7 @@ import edu.eci.pdsw.entities.User;
 import edu.eci.pdsw.persistence.BlogDAO;
 import edu.eci.pdsw.persistence.PersistenceException;
 import edu.eci.pdsw.persistence.*;
+import edu.eci.pdsw.persistence.mybatisimpl.mappers.ComentMapper;
 import edu.eci.pdsw.services.ServicesException;
 import edu.eci.pdsw.services.BlogServices;
 import java.util.List;
@@ -76,8 +77,12 @@ public class BlogServicesImpl implements BlogServices {
 	}
 
 	@Override
-	public List<Comment> searchOffensiveLanguageComments() throws ServicesException {
-		throw new UnsupportedOperationException("Not supported yet.");
+	public List<Blog> searchOffensiveLanguageComments() throws ServicesException {
+		try{
+                    return blogDAO.loadBlogComentariosOfensivos();
+                }catch(PersistenceException ex){
+                    throw new ServicesException("Search error:"+ex.getLocalizedMessage(), ex);
+                }
 	}
 
 	@Override

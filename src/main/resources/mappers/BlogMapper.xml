@@ -33,19 +33,19 @@
     
     
     <select parameterType="map" id="loadBlogComentariosOfensivos"  resultMap="loadBlogComentariosOfensivosResult">
-    	SELECT 
+                SELECT 
     		bc.author as AuthorComment,
     		bc.content as Content,
     		bc.id as ComentarioBlogID,
     		bc.creation_date as fechaDate ,
     		bu.login as usuarioLogin,
     		bu.name as nameUsuario,
-    		bu.lastname as lastNameUsuario,
+    		bu.lastname as lastName,
     		b.id as blogID,
     		b.title as tituloBlog,
     		b.creation_date as blogCreation
 		FROM BLOG as b , BLOG_COMMENT as bc, BLOG_USUARIO as bu
-		WHERE  b.id = bc.blog_id and bu.login = bc.author and (bc.content like '%tonto%' or bc.content like '%bobo%')
+		WHERE  b.id = bc.blog_id and bu.login = bc.author and (bc.content like '%tonto%' or bc.content like '%burro%')
     		ORDER BY usuarioLogin DESC
     </select>
     
@@ -54,28 +54,22 @@
     	<id property="id" column="blogID"/>
     	<result property="title" column="tituloBlog"/> 
     	<result property="creationDate" column="blogCreation"/>
-    	<association property="user" javaType="User" resultMap="userParseBlog"/>
-    	<collection property='comments' ofType='Comment' resultMap='loadCommentResult'></collection>  
+        <collection property='comments' ofType='Comment' resultMap='loadCommentResult'></collection>  
     </resultMap>
     
-    <resultMap type="User" id="userParseBlog">
-    	<id property="login" column="usuarioLogin"></id>
-    	<result property="name" column="nameUsuario"/>
-    	<result property="lastname" column="lastNameUsuario"/> 
-    </resultMap>
-    
+
     
     <resultMap type="Comment" id="loadCommentResult">
     	<id property="id" column="ComentarioBlogID"/>
     	<result property="creationDate" column="fechaDate"/>
-		<result property="content" column="Content"/>    	
-    	<association property="user"  javaType="User" resultMap="userParse"/>
+	<result property="content" column="Content"/>    
+        <association property="author" javaType="User" resultMap="userParse"/>
     </resultMap>
     
     <resultMap type="User" id="userParse">
     	<id property="login" column="usuarioLogin"></id>
     	<result property="name" column="nameUsuario"/>
-    	<result property="lastname" column="lastNameUsuario"/> 
+    	<result property="lastName" column="lastNameUsuario"/> 
     </resultMap>
     
  
