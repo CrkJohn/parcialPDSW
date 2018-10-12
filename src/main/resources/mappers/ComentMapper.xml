@@ -18,7 +18,7 @@
                 bu.lastName as lastNameUsuario,
 		b.title as titleBlog
 		FROM BLOG as b , BLOG_COMMENT as bc, BLOG_USUARIO as bu
-		WHERE b.id = bc.blog_id and bu.login = bc.author 
+		WHERE b.id = bc.blog_id and bu.login = bc.author  and b.title = #{tituloBlog}
 		ORDER BY fechaDate DESC
 	</select>
 
