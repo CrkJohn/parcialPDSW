@@ -9,10 +9,11 @@
 	<title></title>
 </h:head>
 <h:body>
-	<h1>Blogs from #{commentBean.title}</h1>
 	<p:button outcome="users" value="Back to block" />
 	<p:dataTable id="blog_table" var="coments" value="#{commentBean.data}">
-		
+            <p:column headerText="xx" >
+                <p:outputLabel value="#{coments.content}"/>
+            </p:column>
 	</p:dataTable>
 	
 </h:body> 

@@ -1,9 +1,8 @@
 package edu.eci.pdsw.persistence.mybatisimpl.mappers;
 
 import org.apache.ibatis.annotations.Param;
-
+import java.util.List;
+import edu.eci.pdsw.entities.Comment;
 public interface ComentMapper{
-
-	void loadComment(@Param("title") String title);
-
+	List<Comment> loadComment(@Param("title") String title);
 }

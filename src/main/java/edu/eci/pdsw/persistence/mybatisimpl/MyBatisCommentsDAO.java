@@ -17,9 +17,9 @@ public class MyBatisCommentsDAO implements CommentsDAO{
 		ComentMapper comentMapper;
 
 		@Override
-		public List<Comment> loadComment(String title) throws PersistenceException {
-			comentMapper.loadComment(title);
-			return null;
+		public List<Comment> loadComment(String title) throws PersistenceException{
+                       
+			return comentMapper.loadComment(title);
 		}
 
 }

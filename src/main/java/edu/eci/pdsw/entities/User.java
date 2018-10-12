@@ -5,12 +5,15 @@ public class User {
 	private String name;
 	private String lastName;
 	
-	public User(String login, String name, String lastName) {
-		super();
+	public User(String login, String name, String lastName){
 		this.login = login;
 		this.name = name;
 		this.lastName = lastName;
 	}
+        
+        public User(){
+            
+        }
 
 	public String getLogin() {
 		return login;

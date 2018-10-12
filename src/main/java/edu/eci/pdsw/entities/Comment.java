@@ -40,6 +40,10 @@ public class Comment {
 	}
 
     
+    public Comment(){
+        
+    }
+    
 
 	public int getId() {
 		return id;

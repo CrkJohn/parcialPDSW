@@ -12,10 +12,12 @@ import edu.eci.pdsw.entities.Comment;
 import edu.eci.pdsw.entities.User;
 import edu.eci.pdsw.persistence.BlogDAO;
 import edu.eci.pdsw.persistence.PersistenceException;
-import edu.eci.pdsw.persistence.UserDAO;
+import edu.eci.pdsw.persistence.*;
 import edu.eci.pdsw.services.ServicesException;
 import edu.eci.pdsw.services.BlogServices;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -38,8 +40,10 @@ public class BlogServicesImpl implements BlogServices {
 	
 	@Inject
 	private UserDAO userDAO;
+        @Inject 
+        private CommentsDAO commentDao;
 
-    @Override
+        @Override
 	public List<User> listUsers() throws ServicesException {
 		try {
             return userDAO.loadAll();
@@ -53,18 +57,22 @@ public class BlogServicesImpl implements BlogServices {
     	throw new UnsupportedOperationException("Not supported yet.");
 	}
 
-    @Override
-    public List<Blog> searchByUser(String login) throws ServicesException {
-    	try {
-			return blogDAO.loadByUser(login);
-		} catch (PersistenceException ex) {
-            throw new ServicesException("Search error:"+ex.getLocalizedMessage(), ex);
-		}
-    }
+        @Override
+        public List<Blog> searchByUser(String login) throws ServicesException {
+                    try {
+                           return blogDAO.loadByUser(login);
+                    } catch (PersistenceException ex) {
+                        throw new ServicesException("Search error:"+ex.getLocalizedMessage(), ex);
+                    }
+        }
 
 	@Override
 	public List<Comment> searchCommentsByBlogTitle(String title) throws ServicesException {
-		throw new UnsupportedOperationException("Not supported yet.");
+            try {
+                return commentDao.loadComment(title);
+            } catch (PersistenceException ex) {
+                throw  new ServicesException("asda");
+            }
 	}
 
 	@Override
@@ -75,10 +83,10 @@ public class BlogServicesImpl implements BlogServices {
 	@Override
 	public Blog searchBlog(int blogID) throws ServicesException {
 		try {
-            return blogDAO.load(blogID);
-        } catch (PersistenceException ex) {
-            throw new ServicesException("Search error:"+ex.getLocalizedMessage(), ex);
-        }
+                    return blogDAO.load(blogID);
+                } catch (PersistenceException ex) {
+                    throw new ServicesException("Search error:"+ex.getLocalizedMessage(), ex);
+                }
 	}
    
 }

@@ -6,19 +6,19 @@
 <mapper namespace="edu.eci.pdsw.persistence.mybatisimpl.mappers.ComentMapper">
 
 
-	<select id="loadComment" resultMap="loadCommentResult"
-		parameterType="map">
-		SELECT
+	<select id="loadComment" resultMap="loadCommentResult" parameterType="map">
+                  SELECT
 		bc.author as AuthorComment,
 		bc.content as Content,
 		bc.id as ComentarioBlogID,
-		bc.creation_date as fechaDate ,
-		bu.login as usuarioLogin,
+		bc.creation_date as fechaDate,
 		bc.author as pruebita,
+                bu.login as usuarioLogin,
 		bu.name as nameUsuario,
-		bu.lastname as lastNameUsuario
+                bu.lastName as lastNameUsuario,
+		b.title as titleBlog
 		FROM BLOG as b , BLOG_COMMENT as bc, BLOG_USUARIO as bu
-		WHERE b.id = bc.blog_id and bu.login = bc.author and b.title = #{title}
+		WHERE b.id = bc.blog_id and bu.login = bc.author
 		ORDER BY fechaDate DESC
 	</select>
 
@@ -26,9 +26,8 @@
 		<id property="id" column="ComentarioBlogID" />
 		<result property="creationDate" column="fechaDate" />
 		<result property="content" column="Content" />
-		<association property="user" javaType="User" resultMap="userParse" />
-	</resultMap>
-
+		<association property="author" javaType="User" resultMap="edu.eci.pdsw.persistence.mybatisimpl.mappers.UserMapper.userResult"/>
+         </resultMap>
 
 
 </mapper>

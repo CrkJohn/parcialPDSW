@@ -27,4 +27,10 @@
     <delete id="deleteAll">
         delete from BLOG_USUARIO
     </delete>
+    
+    <resultMap type="User" id="userResult">
+        <id property="login" column="usuarioLogin"/>
+        <result property="name" column="nameUsuario"/>
+        <result property="lastName" column="lastNameUsuario"/>
+    </resultMap>
 </mapper>

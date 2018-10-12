@@ -16,7 +16,8 @@ public class CommentBean extends BasePageBean {
 
 	@ManagedProperty(value = "#{param.title}")
 	private String title;
-
+        
+        
 	@Inject
 	private BlogServices blogServices;
 
@@ -25,6 +26,7 @@ public class CommentBean extends BasePageBean {
 			if (title == null) {
 				return blogServices.searchCommentsByBlogTitle("");
 			} else {
+                                System.out.println(blogServices.searchCommentsByBlogTitle(title));
 				return blogServices.searchCommentsByBlogTitle(title);
 			}
 		} catch (ServicesException ex) {
