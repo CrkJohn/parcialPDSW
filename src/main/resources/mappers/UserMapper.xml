@@ -5,6 +5,8 @@
   
 <mapper namespace="edu.eci.pdsw.persistence.mybatisimpl.mappers.UserMapper">
 
+    
+    
     <resultMap type='User' id='UserResult'>
         <id property='login' column='login'/>        
         <result property='name' column='name'/>
@@ -28,9 +30,5 @@
         delete from BLOG_USUARIO
     </delete>
     
-    <resultMap type="User" id="userResult">
-        <id property="login" column="usuarioLogin"/>
-        <result property="name" column="nameUsuario"/>
-        <result property="lastName" column="lastNameUsuario"/>
-    </resultMap>
+  
 </mapper>

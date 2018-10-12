@@ -27,22 +27,7 @@
     <delete id="deleteAll">
         delete from BLOG
     </delete>
-    
-    <select id="loadComment" resultMap="loadCommentResult" parameterType="map">
-    	SELECT 
-    		bc.author as AuthorComment,
-    		bc.content as Content,
-    		bc.id as ComentarioBlogID,
-    		bc.creation_date as fechaDate ,
-    		bu.login as usuarioLogin,
-    		bc.author as pruebita,
-    		bu.name as nameUsuario,
-    		bu.lastname as lastNameUsuario
-			FROM BLOG as b , BLOG_COMMENT as bc, BLOG_USUARIO as bu
-			WHERE   b.id = bc.blog_id and bu.login = bc.author and b.title = #{title}
-			ORDER BY fechaDate DESC 		
-    </select>
-    
+
     
     
     
@@ -59,8 +44,8 @@
     		b.id as blogID,
     		b.title as tituloBlog,
     		b.creation_date as blogCreation
-			FROM BLOG as b , BLOG_COMMENT as bc, BLOG_USUARIO as bu
-			WHERE  b.id = bc.blog_id and bu.login = bc.author and (bc.content like '%tonto%' or bc.content like '%bobo%')
+		FROM BLOG as b , BLOG_COMMENT as bc, BLOG_USUARIO as bu
+		WHERE  b.id = bc.blog_id and bu.login = bc.author and (bc.content like '%tonto%' or bc.content like '%bobo%')
     		ORDER BY usuarioLogin DESC
     </select>
     

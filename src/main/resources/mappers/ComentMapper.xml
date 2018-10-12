@@ -13,9 +13,9 @@
 		bc.id as ComentarioBlogID,
 		bc.creation_date as fechaDate,
 		bc.author as pruebita,
-                bu.login as usuarioLogin,
-		bu.name as nameUsuario,
-                bu.lastName as lastNameUsuario,
+                bu.login,
+		bu.name,
+                bu.lastName,
 		b.title as titleBlog
 		FROM BLOG as b , BLOG_COMMENT as bc, BLOG_USUARIO as bu
 		WHERE b.id = bc.blog_id and bu.login = bc.author  and b.title = #{tituloBlog}
@@ -26,7 +26,7 @@
 		<id property="id" column="ComentarioBlogID" />
 		<result property="creationDate" column="fechaDate" />
 		<result property="content" column="Content" />
-		<association property="author" javaType="User" resultMap="edu.eci.pdsw.persistence.mybatisimpl.mappers.UserMapper.userResult"/>
+		<association property="author" javaType="User" resultMap="edu.eci.pdsw.persistence.mybatisimpl.mappers.UserMapper.UserResult"/>
          </resultMap>
 
 

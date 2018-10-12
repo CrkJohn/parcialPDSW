@@ -28,8 +28,7 @@ public class BlogServicesFactory {
             protected void initialize() {
                 setEnvironmentId(env);
                 install(jdbcHelper);
-                setClassPathResource(pathResource);
-                
+                setClassPathResource(pathResource);                
                 bind(BlogServices.class).to(BlogServicesImpl.class);
                 bind(UserDAO.class).to(MyBatisUserDAO.class);
                 bind(BlogDAO.class).to(MyBatisBlogDAO.class);
